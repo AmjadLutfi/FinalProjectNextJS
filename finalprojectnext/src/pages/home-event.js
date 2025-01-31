@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import './css/home-event.css'
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import Image from "next/image";
+import Head from "next/head";
 
 export default function HomeEvent(){
     const [dataEvent, setDataEvent] = useState([])
@@ -57,7 +58,11 @@ export default function HomeEvent(){
                     ))
                 }
             </ul> */}
-
+            <Head>
+                <title>TMMIN Event</title>
+                <meta name="description" content="Event yang ada di TMMIN" />
+                <meta name="keyword" content="Event, TMMIN" />
+            </Head>
             <div className="container py-5">
                 <h1 className="text-center ">Our Event</h1>
                 <div className="container">
@@ -72,7 +77,7 @@ export default function HomeEvent(){
                                 value={inputSearch}
                                 onChange={e => setInputSearch(e.target.value)}
                             />
-                            <input type="submit" value="🔎"/>
+                            <input type="submit" class="btn btn-primary m-b" value="Search"/>
                         </form>
                     </div>
                 </div>

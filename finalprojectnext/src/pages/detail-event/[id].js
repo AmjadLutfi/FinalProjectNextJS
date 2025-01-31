@@ -3,6 +3,8 @@ import { useEffect, useState } from "react"
 import '../css/detail-event.css'
 import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import Image from "next/image"
+import Link from "next/link"
+import Head from "next/head"
 
 export default function DetailEvent(){
     const [dataById, setDataById] = useState({})
@@ -29,13 +31,17 @@ export default function DetailEvent(){
     return(
         <>
 
-            <h1>
+            {/* <h1>
                 ini detail Event {id}
-            </h1>
+            </h1> */}
             {/* <p>
                 {JSON.stringify(dataById)}
             </p> */}
-
+            <Head>
+                <title>TMMIN Event</title>
+                <meta name="description" content="Cari Tau apa Aja Event nya? Event yang ada di TMMIN" />
+                <meta name="keyword" content="Event, TMMIN" />
+            </Head>
             <div className="container mt-5">
                 <div className="row">
                     <div className="col-md-8 mb-2">
@@ -58,19 +64,12 @@ export default function DetailEvent(){
                         </div>
                         <button className="btn btn-primary btn-lg mb-3 me-2">
                                 <i className="bi bi-cart-plus"></i> Add to Cart
+                        </button>
+                        <Link href={`/home-event`}>
+                            <button className="btn btn-outline-secondary btn-lg mb-3">
+                                <i className="bi bi-heart"></i> Back
                             </button>
-                        <button className="btn btn-outline-secondary btn-lg mb-3">
-                                <i className="bi bi-heart"></i> Add to Wishlist
-                            </button>
-                        <div className="mt-4">
-                            <h5>Key Features:</h5>
-                            <ul>
-                                <li>Industry-leading noise cancellation</li>
-                                <li>30-hour battery life</li>
-                                <li>Touch sensor controls</li>
-                                <li>Speak-to-chat technology</li>
-                            </ul>
-                        </div>
+                        </Link>
                     </div>
                 </div>
             </div>
