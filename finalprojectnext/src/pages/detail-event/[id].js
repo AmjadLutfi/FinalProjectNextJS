@@ -1,5 +1,8 @@
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
+import '../css/detail-event.css'
+import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css'
+import Image from "next/image"
 
 export default function DetailEvent(){
     const [dataById, setDataById] = useState({})
@@ -15,7 +18,7 @@ export default function DetailEvent(){
             const data = await fetch(`/api/event-by-id/${id}`)
             const result = await data.json()
 
-            // console.log(result.data, "ini datanya");
+            console.log(result.data, "ini datanya");
             setDataById(result.data)
         } catch (error) {
             console.log(error);
@@ -25,58 +28,41 @@ export default function DetailEvent(){
 
     return(
         <>
+
             <h1>
                 ini detail Event {id}
             </h1>
-            <p>
+            {/* <p>
                 {JSON.stringify(dataById)}
-            </p>
+            </p> */}
 
-            <div class="container mt-5">
-                <div class="row">
-                    <div class="col-md-8 mb-2">
-                        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHwxfHxoZWFkcGhvbmV8ZW58MHwwfHx8MTcyMTMwMzY5MHww&ixlib=rb-4.0.3&q=80&w=1080" alt="Product" class="img-fluid rounded mb-3 product-image" id="mainImage"/>
+            <div className="container mt-5">
+                <div className="row">
+                    <div className="col-md-8 mb-2">
+                        <Image src={dataById?.image} width={400} height={400} alt="Product" className="img-fluid rounded mb-3 product-image" id="mainImage"/>
                     </div>
 
-                    <div class="col-md-6">
-                        <h2 class="mb-3">Premium Wireless Headphones</h2>
-                        <p class="text-muted mb-4">SKU: WH1000XM4</p>
-                        <div class="mb-3">
-                            <span class="h4 me-2">$349.99</span>
-                            <span class="text-muted"><s>$399.99</s></span>
+                    <div className="col-md-6">
+                        <h2 className="mb-3">{dataById?.tittle}</h2>
+                        <p className="text-muted mb-4">{dataById?.description}</p>
+                        <div className="mb-3">
+                            <span className="h4 me-2">{dataById?.category}</span>
                         </div>
-                        <div class="mb-3">
-                            <i class="bi bi-star-fill text-warning"></i>
-                            <i class="bi bi-star-fill text-warning"></i>
-                            <i class="bi bi-star-fill text-warning"></i>
-                            <i class="bi bi-star-fill text-warning"></i>
-                            <i class="bi bi-star-half text-warning"></i>
-                            <span class="ms-2">4.5 (120 reviews)</span>
+                        <div className="mb-3">
+                            <span className="ms-2">{dataById?.date}</span>
                         </div>
-                        <p class="mb-4">Experience premium sound quality and industry-leading noise cancellation with these wireless
-                            headphones. Perfect for music lovers and frequent travelers.</p>
-                        <div class="mb-4">
-                            <h5>Color:</h5>
-                            <div class="btn-group" role="group" aria-label="Color selection">
-                                <input type="radio" class="btn-check" name="color" id="black" autocomplete="off" checked/>
-                                <label class="btn btn-outline-dark" for="black">Black</label>
-                                <input type="radio" class="btn-check" name="color" id="silver" autocomplete="off"/>
-                                <label class="btn btn-outline-secondary" for="silver">Silver</label>
-                                <input type="radio" class="btn-check" name="color" id="blue" autocomplete="off"/>
-                                <label class="btn btn-outline-primary" for="blue">Blue</label>
-                            </div>
+                        <p className="mb-4">{dataById?.location}</p>
+                        <div className="mb-4">
+                            <label for="quantity" className="form-label">Quantity:</label>
+                            <input type="number" className="form-control" id="quantity" value="1" min="1" style={{width: 80}}/>
                         </div>
-                        <div class="mb-4">
-                            <label for="quantity" class="form-label">Quantity:</label>
-                            <input type="number" class="form-control" id="quantity" value="1" min="1" style="width: 80px;"/>
-                        </div>
-                        <button class="btn btn-primary btn-lg mb-3 me-2">
-                                <i class="bi bi-cart-plus"></i> Add to Cart
+                        <button className="btn btn-primary btn-lg mb-3 me-2">
+                                <i className="bi bi-cart-plus"></i> Add to Cart
                             </button>
-                        <button class="btn btn-outline-secondary btn-lg mb-3">
-                                <i class="bi bi-heart"></i> Add to Wishlist
+                        <button className="btn btn-outline-secondary btn-lg mb-3">
+                                <i className="bi bi-heart"></i> Add to Wishlist
                             </button>
-                        <div class="mt-4">
+                        <div className="mt-4">
                             <h5>Key Features:</h5>
                             <ul>
                                 <li>Industry-leading noise cancellation</li>
